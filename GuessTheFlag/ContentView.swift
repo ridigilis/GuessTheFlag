@@ -17,7 +17,8 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color.teal.ignoresSafeArea()
+            LinearGradient(colors: [.teal, .black], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             VStack(spacing: 30) {
                 VStack {
                     Text("Tap the flag of").foregroundStyle(.white)
