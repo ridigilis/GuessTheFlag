@@ -21,15 +21,15 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack(spacing: 30) {
                 VStack {
-                    Text("Tap the flag of").foregroundStyle(.white)
-                    Text(countries[correctAnswer]).foregroundStyle(.white)
+                    Text("Tap the flag of").foregroundStyle(.white).font(.subheadline.weight(.heavy))
+                    Text(countries[correctAnswer]).foregroundStyle(.white).font(.largeTitle.weight(.semibold))
                 }
                 
                 ForEach(0..<3) { number in
                     Button {
                         flagTapped(number)
                     } label: {
-                        Image(countries[number])
+                        Image(countries[number]).clipShape(.capsule).shadow(radius: 5)
                     }
                 }
             }
