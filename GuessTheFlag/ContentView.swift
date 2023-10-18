@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     
     @State private var score = 0
+    @State private var questionCount = 0
     
     var body: some View {
         ZStack {
@@ -58,7 +59,11 @@ struct ContentView: View {
             .padding()
         }
         .alert(scoreTitle, isPresented: $showingScore) {
-            Button("Continue", action: askQuestion)
+            if questionCount == 8 {
+                Button("Start Over", action: askQuestion)
+            } else {
+                Button("Continue", action: askQuestion)
+            }
         } message: {
             Text("Your score is \(score)")
         }
@@ -73,10 +78,18 @@ struct ContentView: View {
             score -= 1
         }
         
+        questionCount += 1
+        if questionCount == 8 {
+            scoreTitle = "Your final score is"
+        }
         showingScore = true
     }
     
     func askQuestion() {
+        if questionCount == 8 {
+            questionCount = 0
+            score = 0
+        }
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
     }
